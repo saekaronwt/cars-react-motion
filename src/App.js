@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import {
   Route,
   Routes,
@@ -9,6 +8,9 @@ import Car from "./components/Car";
 import Cars from "./components/Cars";
 import Navigation from "./components/Navigation";
 import { AnimatePresence } from "framer-motion";
+
+import "./App.css";
+
 
 const App = () => {
   const location = useLocation();
