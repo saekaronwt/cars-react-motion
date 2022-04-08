@@ -2,14 +2,13 @@ import React from "react";
 import Data from "./Data";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { gridAnimation, cardAnimation, h3Animation } from "./Animation";
+import { h3Animation } from "./Animation";
 
-import { Autoplay, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Cars = () => {
   return (
@@ -50,22 +49,24 @@ const Cars = () => {
           },
         }}
         grabCursor={true}
-        pagination={ {clickable: true} }
+        pagination={{ clickable: true }}
       >
         {Data.map((itemCar) => {
           return (
             <SwiperSlide
-                className="car__card" key={itemCar.id}
-                // variants={cardAnimation}
-                // animate="show"
-                // exit="hide"
-              >
-            <Link to={`/car/${itemCar.id}`}  className="item__car">
-              
-                <img src={require(`../assets/${itemCar.image}`)} alt={itemCar.car} />
-            </Link>
+              className="car__card"
+              key={itemCar.id}
+              // variants={cardAnimation}
+              // animate="show"
+              // exit="hide"
+            >
+              <Link to={`/car/${itemCar.id}`} className="item__car">
+                <img
+                  src={require(`../assets/${itemCar.image}`)}
+                  alt={itemCar.car}
+                />
+              </Link>
             </SwiperSlide>
-
           );
         })}
       </Swiper>
