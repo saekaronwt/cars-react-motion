@@ -1,38 +1,225 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+:root {
+  --color-bar: hsl(0, 0%, 47%);
+  --color-logo: hsl(354, 84%, 61%);
+  --bg-color: hsl(9, 99%, 64%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*************** NAVIGATION ***************/
+.navigation__bar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+}
+.bar__logo {
+  font-size: 3rem;
+  color: var(--color-logo);
+  cursor: pointer;
+  z-index: 100;
+}
+.icon__bar {
+  font-size: 2rem;
+  color: var(--color-bar);
+  cursor: pointer;
+}
+.bar__box {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  background-color: #000;
+  height: calc(100vh);
+  width: 30%;
+  z-index: 4;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  transition: 0.3s;
+}
+.bar__box.active {
+  left: 0;
+}
+.bar__box ul {
+  cursor: n-resize;
+  height: 190px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+}
+.bar__box ul::-webkit-scrollbar {
+  display: none;
+}
+.bar__box ul li {
+  list-style: none;
+}
+.bar__box ul li a {
+  text-decoration: none;
+  color: #fff;
+  cursor: n-resize;
+  transition: 0.3s;
+}
+.bar__box ul li a:hover {
+  color: var(--color-bar);
+}
+/*************** CARD-CARS ***************/
+.cars__container {
+  width: 70%;
+  margin: auto;
+  background-color: hsl(0, 0%, 90%);
+  padding: 40px;
+  border-radius: 40px;
+}
+.title {
+  text-align: center;
+  color: var(--color-bar);
+  font-weight: 900;
+  opacity: 0;
+  margin-bottom: 2rem;
+}
+.list__cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  place-items: center;
+  grid-gap: 2rem;
+}
+.item__car{
+    width: 100%;
+    height: 100%;
+}
+.car__card {
+  height: 100%;
+  opacity: 0;
+}
+.car__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.App-link {
-  color: #61dafb;
+/*************** carSingle ***************/
+.car__container {
+  overflow: hidden;
+
+  transition: 0.3s;
+}
+.car__container.active {
+  left: 30%;
+}
+.car__box {
+  opacity: 0;
+}
+.back__car {
+  font-size: 2rem;
+  color: var(--bg-color);
+  cursor: pointer;
+  padding-left: 2rem;
+  display: inline-block;
+}
+.slidecar__container {
+  display: flex;
+  height: calc(100vh - 145px);
+  justify-content: center;
+  margin-left: -10%;
+  align-items: center;
+}
+.slidecar__container img {
+  width: 50vw;
+  z-index: 2;
+  object-fit: cover;
+}
+.slidecar__description {
+  width: 30%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--bg-color);
+  color: #fff;
+  z-index: -1;
+}
+.description__box {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  left: 15%;
+  transform: translate(-10%, -30%);
+}
+.slidecar__description h3 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  transition: 0.3s;
+}
+.slidecar__description p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-width: 350px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  .bar__box {
+    width: 50%;
+    left: -50%;
   }
-  to {
-    transform: rotate(360deg);
+  .cars__container {
+    width: 80%;
+  }
+  .slidecar__container {
+    height: auto;
+    margin: 0;
+    flex-direction: column;
+  }
+  .slidecar__container img {
+    width: 60vw;
+    order: 2;
+    min-width: 350px;
+  }
+  .slidecar__description {
+    position: relative;
+    height: auto;
+    background-color: transparent;
+    color: var(--color-logo);
+    top: inherit;
+    left: inherit;
+    width: 100%;
+    order: 1;
+  }
+  .slidecar__description h3 {
+    margin-bottom: 0;
+  }
+  .description__box {
+    padding: 0 2rem;
+    position: relative;
+    top: inherit;
+    left: inherit;
+    right: inherit;
+    transform: none;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .bar__box {
+    width: 80%;
+    left: -80%;
+  }
+  .cars__container {
+    width: 90%;
+    padding: 40px 10px;
+  }
+  .description__box {
+    flex-direction: column;
   }
 }
